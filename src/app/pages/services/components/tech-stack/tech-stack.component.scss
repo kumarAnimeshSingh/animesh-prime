@@ -1,0 +1,122 @@
+@use '../../../../../styles/breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.stack {
+  padding: clamp(4rem, 8vw, 6.5rem) 0;
+  background: var(--surface);
+}
+
+.stack__grid {
+  display: grid;
+  gap: 1.25rem;
+  margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.up(bp.$sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include bp.up(bp.$lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  padding: 1.6rem;
+  border: 1px solid rgba(20, 35, 61, 0.09);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, #fbfaf6, #fff);
+  transition:
+    border-color 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    transform 0.25s var(--ease);
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(184, 146, 74, 0.45);
+    box-shadow: var(--shadow-md);
+
+    .group__icon {
+      color: var(--navy-ink);
+      background: linear-gradient(135deg, #e2c590, var(--gold));
+    }
+  }
+}
+
+.group__head {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.group__icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2.85rem;
+  height: 2.85rem;
+  border-radius: 0.8rem;
+  color: #fff;
+  background: var(--navy);
+  transition:
+    background 0.25s var(--ease),
+    color 0.25s var(--ease);
+
+  app-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+}
+
+.group__name {
+  margin: 0;
+  color: var(--navy);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.group__desc {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.5;
+}
+
+.group__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px dashed rgba(20, 35, 61, 0.12);
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid rgba(20, 35, 61, 0.1);
+    border-radius: 0.55rem;
+    background: #fff;
+    color: var(--navy);
+    font-size: 0.86rem;
+    font-weight: 600;
+    box-shadow: 0 1px 2px rgba(13, 24, 44, 0.04);
+
+    &::before {
+      content: '';
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+  }
+}

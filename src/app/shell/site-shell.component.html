@@ -1,0 +1,71 @@
+<a class="skip" [routerLink]="[]" fragment="main">Skip to content</a>
+
+<header #topbar class="topbar" [class.is-open]="menuOpen">
+  <div class="topbar__inner">
+    <a class="logo" routerLink="/" fragment="top" (click)="closeMenu()">
+      <span class="logo__mark" aria-hidden="true"></span>
+      <span>{{ site.brand }}</span>
+    </a>
+
+    <button
+      class="menu-btn"
+      type="button"
+      [attr.aria-expanded]="menuOpen"
+      aria-controls="site-nav"
+      aria-label="Menu"
+      (click)="toggleMenu()"
+    >
+      <span></span><span></span>
+    </button>
+
+    <nav id="site-nav" class="nav" [class.is-open]="menuOpen" aria-label="Primary">
+      @for (link of links; track link.label) {
+        @if (link.fragment) {
+          @let active = activeSection() === link.fragment;
+          <a
+            [routerLink]="link.path"
+            [fragment]="link.fragment"
+            [class.is-active]="active"
+            [attr.aria-current]="active ? 'location' : null"
+            (click)="closeMenu()"
+          >
+            {{ link.label }}
+          </a>
+        } @else {
+          <a
+            class="nav__route"
+            [routerLink]="link.path"
+            routerLinkActive="is-active"
+            ariaCurrentWhenActive="page"
+            (click)="closeMenu()"
+          >
+            {{ link.label }}
+          </a>
+        }
+      }
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <ng-content />
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <p class="footer__brand">{{ site.brand }}</p>
+      <p>{{ site.name }} · {{ site.role }} · {{ site.location }}</p>
+      <nav class="footer__nav" aria-label="Footer">
+        <a routerLink="/" fragment="top">Home</a>
+        <a routerLink="/services">Services</a>
+        <a routerLink="/" fragment="contact">Contact</a>
+      </nav>
+    </div>
+    <div class="footer__contact">
+      <a [href]="'mailto:' + site.contact.email">{{ site.contact.email }}</a>
+      <span>{{ site.contact.phone }}</span>
+    </div>
+  </div>
+  <p class="footer__copy">&copy; {{ year }} {{ site.brand }}</p>
+</footer>

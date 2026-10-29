@@ -1,0 +1,161 @@
+export const SITE = {
+  brand: 'Animesh Info',
+  name: 'Animesh Kumar',
+  role: 'Software Engineer',
+  location: 'Kuwait',
+  summary:
+    'Software engineer with 15+ years of experience across requirements, analysis, design, development, maintenance, enhancement, and production support of web applications on Microsoft technologies.',
+  focus:
+    'Leading full-stack engineering initiatives across **.NET, C#, ASP.NET Core, Web API, Angular, React, TypeScript, JavaScript, SQL Server, Azure, Microservices, REST APIs, Docker, CI/CD, Git, Cloud Architecture, and AI/LLM integration**. Driving solution architecture, technical decision-making, development standards, team mentoring, and end-to-end project delivery while building **scalable, secure, high-performance, and business-critical enterprise systems**.',
+  contact: {
+    email: 'kumaranimesh2020@gmail.com',
+    phone: '+ (965) 98819142',
+    phoneAlt: '+ (91) 6202029240',
+    whatsapp: '+ (965) 98819142',
+    skype: 'kumaranimeshsingh786',
+  },
+  experience: [
+    {
+      start: 2020,
+      end: null,
+      title: 'Team Lead / Full Stack Developer',
+      detail:
+        'Leading cross-functional development teams in designing, building, and delivering scalable, AI-powered enterprise applications using modern web technologies and the Microsoft ecosystem. Responsible for technical direction, team leadership, solution architecture, development, AI integration, deployment, performance optimization, and production support. Mentoring developers, driving engineering best practices, coordinating project delivery, and translating business requirements into secure, high-performance, and scalable solutions.',
+      focus: [
+        'Team Leadership',
+        'Solution Architecture',
+        'AI Integration',
+        '.NET & C#',
+        'Angular',
+        'Azure',
+        'Production Support',
+      ],
+    },
+    {
+      start: 2017,
+      end: 2019,
+      title: 'Software Engineer',
+      detail: 'Software architecture and design for production web systems.',
+      focus: ['Software Architecture', 'System Design', 'Web Applications'],
+    },
+    {
+      start: 2012,
+      end: 2017,
+      title: 'Software Developer',
+      detail: '.NET development focused on maintainable business applications.',
+      focus: ['.NET', 'C#', 'Business Applications'],
+    },
+    {
+      start: 2009,
+      end: 2011,
+      title: 'Windows Application Developer',
+      detail: 'Design, development, and testing of Windows desktop applications.',
+      focus: ['Desktop Applications', 'Design', 'Testing'],
+    },
+  ],
+  education: [
+    {
+      title: 'MBA in Human Resource Management',
+      detail: 'Recruiting, training, compensation, employee relations, and organizational culture.',
+    },
+    {
+      title: "Master's in Computer Applications",
+      detail: 'Systems analysis and administration.',
+    },
+    {
+      title: 'Bachelor of Computer Applications',
+      detail: 'Programming and application design foundations.',
+    },
+    {
+      title: 'Diploma in Networking',
+      detail: 'Network maintenance and operations.',
+    },
+  ],
+  skillGroups: [
+    {
+      title: 'AI & Intelligent Systems',
+      icon: 'sparkles',
+      summary: 'Production-grade generative AI grounded in enterprise data and workflows.',
+      featured: true,
+      items: [
+        'Generative AI & LLMs',
+        'RAG (Retrieval-Augmented Generation)',
+        'Agentic AI & Multi-Agent Workflows',
+        'Azure OpenAI & OpenAI APIs',
+        'Semantic Kernel',
+        'Vector Search & Azure AI Search',
+        'Prompt Engineering & Evaluation',
+      ],
+    },
+    {
+      title: 'Backend & Architecture',
+      icon: 'server',
+      summary: 'Scalable, maintainable services built on modern .NET.',
+      items: [
+        '.NET 8+ & C#',
+        'ASP.NET Core Web API',
+        'Microservices',
+        'Event-Driven Architecture',
+        'Clean Architecture & DDD',
+        'RESTful API Design',
+      ],
+    },
+    {
+      title: 'Cloud & DevOps',
+      icon: 'cloud',
+      summary: 'Cloud-native delivery on Microsoft Azure with automated pipelines.',
+      items: [
+        'Microsoft Azure',
+        'Azure Functions & App Service',
+        'Docker & Kubernetes (AKS)',
+        'CI/CD: Azure DevOps & GitHub Actions',
+        'Observability & Application Insights',
+      ],
+    },
+    {
+      title: 'Messaging & Integration',
+      icon: 'workflow',
+      summary: 'Reliable, decoupled communication between systems and services.',
+      items: [
+        'Azure Service Bus',
+        'RabbitMQ',
+        'Kafka & Azure Event Hubs',
+        'Message Queues & Pub/Sub',
+        'API Gateway (Azure API Management)',
+        'SignalR Real-Time',
+      ],
+    },
+    {
+      title: 'Data & Performance',
+      icon: 'database',
+      summary: 'Fast, well-modelled data layers for high-traffic applications.',
+      items: [
+        'SQL Server & Azure SQL',
+        'Query & Performance Tuning',
+        'Cosmos DB & NoSQL',
+        'Redis Caching',
+        'Entity Framework Core',
+      ],
+    },
+    {
+      title: 'Frontend Engineering',
+      icon: 'browser',
+      summary: 'Rich, responsive enterprise interfaces with modern frameworks.',
+      items: ['Angular', 'React', 'TypeScript', 'RxJS & Signals', 'State Management'],
+    },
+    {
+      title: 'Leadership & Delivery',
+      icon: 'users',
+      summary: 'Leading teams from requirements to reliable production releases.',
+      items: [
+        'Team Leadership & Mentoring',
+        'Solution Architecture',
+        'Agile / Scrum',
+        'Jira & Azure Boards',
+        'Code Reviews & Engineering Standards',
+        'Stakeholder & Requirements Management',
+      ],
+    },
+  ],
+  languages: ['English', 'Hindi', 'Arabic', 'Bhojpuri'],
+} as const;

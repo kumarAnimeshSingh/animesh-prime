@@ -1,0 +1,57 @@
+<dl class="summary">
+  <div class="summary__item">
+    <dt>Career started</dt>
+    <dd>{{ firstYear() }}</dd>
+  </div>
+  <div class="summary__item">
+    <dt>Career stages</dt>
+    <dd>{{ roles().length }}</dd>
+  </div>
+  @if (currentRole(); as current) {
+    <div class="summary__item summary__item--wide">
+      <dt>Current role</dt>
+      <dd>{{ current.title }}</dd>
+    </div>
+  }
+</dl>
+
+<ol class="timeline">
+  @for (role of entries(); track role.start) {
+    <li class="role" [class.is-current]="role.isCurrent">
+      <div class="role__when">
+        <p class="role__period">
+          <time [attr.datetime]="role.start">{{ role.start }}</time>
+          <span aria-hidden="true">&nbsp;—&nbsp;</span>
+          <span class="visually-hidden">to </span>
+          @if (role.end) {
+            <time [attr.datetime]="role.end">{{ role.end }}</time>
+          } @else {
+            <span>Present</span>
+          }
+        </p>
+        <p class="role__duration">{{ role.duration }}</p>
+      </div>
+
+      <div class="role__rail" aria-hidden="true">
+        <span class="role__dot"></span>
+      </div>
+
+      <article class="role__card">
+        <header class="role__head">
+          <h3 class="role__title">{{ role.title }}</h3>
+          @if (role.isCurrent) {
+            <span class="role__badge">Current role</span>
+          }
+        </header>
+        <p class="role__detail">{{ role.detail }}</p>
+        @if (role.focus.length) {
+          <ul class="role__focus" aria-label="Focus areas">
+            @for (item of role.focus; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        }
+      </article>
+    </li>
+  }
+</ol>

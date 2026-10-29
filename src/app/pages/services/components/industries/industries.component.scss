@@ -1,0 +1,112 @@
+@use '../../../../../styles/breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.industries {
+  padding: clamp(4rem, 8vw, 6.5rem) 0;
+  background: var(--cream);
+}
+
+.industries__grid {
+  display: grid;
+  gap: 1rem;
+  margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.up(bp.$sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include bp.up(bp.$md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include bp.up(bp.$lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.industry {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid rgba(20, 35, 61, 0.08);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  transition:
+    border-color 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    transform 0.25s var(--ease);
+
+  &:not(.industry--cta):hover {
+    transform: translateY(-3px);
+    border-color: rgba(184, 146, 74, 0.45);
+    box-shadow: var(--shadow-md);
+
+    .industry__icon {
+      color: var(--navy-ink);
+      background: linear-gradient(135deg, #e2c590, var(--gold));
+    }
+  }
+}
+
+.industry__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 1.1rem;
+  border-radius: 50%;
+  color: var(--navy);
+  background: #f3ecdd;
+  transition:
+    background 0.25s var(--ease),
+    color 0.25s var(--ease);
+
+  app-icon {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+}
+
+.industry__name {
+  margin: 0 0 0.45rem;
+  color: var(--navy);
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.industry__desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.industry--cta {
+  justify-content: center;
+  border-color: transparent;
+  color: #fff;
+  background:
+    radial-gradient(90% 90% at 100% 0%, rgba(201, 165, 106, 0.28), transparent 60%),
+    linear-gradient(150deg, var(--navy), var(--navy-ink));
+
+  .industry__name {
+    color: #fff;
+  }
+
+  .industry__desc {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .btn {
+    align-self: flex-start;
+    margin-top: 1.25rem;
+    min-height: 2.75rem;
+    padding-inline: 1.1rem;
+    font-size: 0.92rem;
+  }
+}

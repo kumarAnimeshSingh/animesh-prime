@@ -1,0 +1,15 @@
+$sm: 640px;
+$md: 900px;
+$lg: 1100px;
+
+@mixin up($min) {
+  @media (min-width: $min) {
+    @content;
+  }
+}
+
+@mixin down($max) {
+  @media (max-width: ($max - 0.02px)) {
+    @content;
+  }
+}

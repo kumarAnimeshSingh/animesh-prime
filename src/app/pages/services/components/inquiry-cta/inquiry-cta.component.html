@@ -1,0 +1,79 @@
+<section class="inquiry" id="inquiry" aria-labelledby="inquiry-title">
+  <div class="container">
+    <div class="inquiry__card">
+      <span class="inquiry__ring inquiry__ring--a" aria-hidden="true"></span>
+      <span class="inquiry__ring inquiry__ring--b" aria-hidden="true"></span>
+
+      <div class="inquiry__copy">
+        <app-section-heading
+          eyebrow="Get started"
+          title="Have a Project in Mind?"
+          headingId="inquiry-title"
+          lead="Let's turn your business requirements into a scalable technology solution."
+          [inverse]="true"
+        />
+
+        @if (topic(); as currentTopic) {
+          <p class="topic" aria-live="polite">
+            <span class="topic__label">Enquiry about</span>
+            <strong>{{ currentTopic }}</strong>
+            <a class="topic__clear" [routerLink]="[]" fragment="inquiry" aria-label="Clear enquiry topic">
+              <app-icon name="close" />
+            </a>
+          </p>
+        }
+
+        <div class="inquiry__actions">
+          <a class="btn btn--primary" [href]="mailtoHref()">
+            Start a Conversation
+            <app-icon name="arrowRight" />
+          </a>
+          <a class="btn btn--outline-light" routerLink="/" fragment="contact">Contact Us</a>
+        </div>
+
+        <div class="next">
+          <p class="next__title">What happens next</p>
+          <ol>
+            <li><span>1</span>Share your requirements and goals</li>
+            <li><span>2</span>Discovery call with an engineer</li>
+            <li><span>3</span>Tailored proposal and roadmap</li>
+          </ol>
+        </div>
+      </div>
+
+      <ul class="channels" aria-label="Contact channels">
+        <li>
+          <a class="channel" [href]="'mailto:' + contact().email">
+            <span class="channel__icon"><app-icon name="mail" /></span>
+            <span class="channel__text">
+              <span class="channel__label">Email</span>
+              <span class="channel__value">{{ contact().email }}</span>
+            </span>
+            <app-icon class="channel__arrow" name="arrowUpRight" />
+          </a>
+        </li>
+        <li>
+          <a class="channel" [href]="telHref()">
+            <span class="channel__icon"><app-icon name="phone" /></span>
+            <span class="channel__text">
+              <span class="channel__label">Phone</span>
+              <span class="channel__value">{{ contact().phone }}</span>
+            </span>
+            <app-icon class="channel__arrow" name="arrowUpRight" />
+          </a>
+        </li>
+        <li>
+          <a class="channel" [href]="whatsappHref()" target="_blank" rel="noopener noreferrer">
+            <span class="channel__icon"><app-icon name="chat" /></span>
+            <span class="channel__text">
+              <span class="channel__label">WhatsApp</span>
+              <span class="channel__value">{{ contact().whatsapp }}</span>
+            </span>
+            <app-icon class="channel__arrow" name="arrowUpRight" />
+            <span class="visually-hidden">(opens in a new tab)</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

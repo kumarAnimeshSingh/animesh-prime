@@ -1,0 +1,108 @@
+<app-site-shell>
+  <section class="hero" id="top">
+    <div class="hero__board">
+      <div class="hero__copy">
+        <p class="hero__quotes" aria-hidden="true">&ldquo;</p>
+
+        <h1 class="hero__title">
+          Building Reliable
+          <span>Web Systems</span>
+          for Modern
+          <span>Business</span>
+        </h1>
+
+        <div class="hero__byline">
+          <img
+            class="hero__avatar"
+            src="assets/imgs/Animesh.jpeg"
+            [alt]="site.name"
+            width="56"
+            height="56"
+          />
+          <div>
+            <p class="hero__by">By {{ site.name }}</p>
+            <span class="hero__badge">{{ site.role }}</span>
+            <p class="hero__brand-line">{{ site.brand }} · {{ site.location }}</p>
+          </div>
+        </div>
+
+        <p class="hero__summary">{{ site.summary }}</p>
+
+        <a class="hero__cta" href="#contact">
+          <span class="hero__cta-icon" aria-hidden="true"></span>
+          www.animesh.info
+        </a>
+      </div>
+
+      <div class="hero__visual">
+        <div class="hero__diagonal" aria-hidden="true"></div>
+        <img
+          class="hero__portrait"
+          src="assets/imgs/Animesh.jpeg"
+          [alt]="site.name"
+          width="640"
+          height="850"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--alt" id="experience">
+    <div class="panel__inner">
+      <p class="eyebrow">Experience</p>
+      <h2>Career timeline</h2>
+      <p class="lead section-lead">
+        A steady progression from desktop applications to enterprise-scale, full-stack and cloud engineering on
+        Microsoft technologies.
+      </p>
+      <app-career-timeline [roles]="site.experience" />
+    </div>
+  </section>
+
+  <section class="panel" id="capabilities">
+    <div class="panel__inner">
+      <p class="eyebrow">Capabilities</p>
+      <h2>Core expertise</h2>
+      <p class="lead section-lead">
+        AI-powered, cloud-native enterprise engineering on the Microsoft stack, from LLM and RAG solutions to
+        microservices on Azure, delivered by teams I lead and mentor.
+      </p>
+      <app-tech-strengths [groups]="site.skillGroups" [languages]="site.languages" />
+    </div>
+  </section>
+
+  <section class="panel panel--alt" id="education">
+    <div class="panel__inner">
+      <p class="eyebrow">Education</p>
+      <h2>Academic background</h2>
+      <div class="edu-grid">
+        @for (item of site.education; track item.title) {
+          <article>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.detail }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="contact">
+    <div class="panel__inner contact">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>Let’s work together</h2>
+        <p class="lead">Available for software engineering engagements and full-stack delivery.</p>
+      </div>
+      <div class="contact__box">
+        <a class="hero__cta" [href]="'mailto:' + site.contact.email">
+          <span class="hero__cta-icon" aria-hidden="true"></span>
+          {{ site.contact.email }}
+        </a>
+        <p><span>Phone</span>{{ site.contact.phone }}</p>
+        <p><span>WhatsApp</span>{{ site.contact.whatsapp }}</p>
+        <p><span>Skype</span>{{ site.contact.skype }}</p>
+        <p><span>Location</span>{{ site.location }}</p>
+      </div>
+    </div>
+  </section>
+</app-site-shell>

@@ -1,0 +1,103 @@
+<section class="explorer" id="services" aria-labelledby="services-title">
+  <div class="container">
+    <div class="explorer__head">
+      <app-section-heading
+        eyebrow="Our services"
+        title="Engineering services for every stage of your technology journey"
+        headingId="services-title"
+        lead="Six specialised practices, one accountable team. Choose a practice to see exactly what we deliver and the technologies behind it."
+      />
+      <p class="explorer__hint">
+        <app-icon name="layers" />
+        {{ categories().length }} practices &middot; select one to explore
+      </p>
+    </div>
+
+    <div class="explorer__layout">
+      <div #tabList class="tabs" role="tablist" aria-label="Service categories">
+        @for (category of categories(); track category.id; let i = $index) {
+          <button
+            #tab
+            type="button"
+            role="tab"
+            class="tab"
+            [id]="'service-tab-' + category.id"
+            [class.is-active]="i === selectedIndex()"
+            [attr.aria-selected]="i === selectedIndex()"
+            [attr.aria-controls]="panelId"
+            [attr.tabindex]="i === selectedIndex() ? 0 : -1"
+            (click)="select(category.id)"
+            (keydown)="onTabKeydown($event, i)"
+          >
+            <span class="tab__icon"><app-icon [name]="category.icon" /></span>
+            <span class="tab__text">
+              <span class="tab__name">{{ category.name }}</span>
+              <span class="tab__count">{{ category.services.length }} services</span>
+            </span>
+            <app-icon class="tab__chevron" name="arrowRight" />
+          </button>
+        }
+      </div>
+
+      <div
+        class="panel"
+        role="tabpanel"
+        [id]="panelId"
+        [attr.aria-labelledby]="'service-tab-' + selected().id"
+        tabindex="0"
+      >
+        <!-- Keyed on the category so the entry animation replays on every switch. -->
+        @for (category of [selected()]; track category.id) {
+          <div class="panel__content">
+            <header class="intro">
+              <div class="intro__main">
+                <div class="intro__meta">
+                  <span class="intro__icon"><app-icon [name]="category.icon" /></span>
+                  <span class="intro__index">
+                    Practice {{ pad(selectedIndex() + 1) }} / {{ pad(categories().length) }}
+                  </span>
+                </div>
+                <h3 class="intro__title">{{ category.name }}</h3>
+                <p class="intro__tagline">{{ category.tagline }}</p>
+                <p class="intro__summary">{{ category.summary }}</p>
+                <a
+                  class="btn btn--primary"
+                  [routerLink]="[]"
+                  [queryParams]="{ service: category.id }"
+                  fragment="inquiry"
+                >
+                  Discuss Your Project
+                  <app-icon name="arrowRight" />
+                </a>
+              </div>
+
+              <div class="intro__aside">
+                <p class="intro__label">What you can expect</p>
+                <ul class="intro__outcomes">
+                  @for (outcome of category.outcomes; track outcome) {
+                    <li><app-icon name="check" />{{ outcome }}</li>
+                  }
+                </ul>
+
+                <p class="intro__label">Core technologies</p>
+                <ul class="intro__tech" aria-label="Core technologies">
+                  @for (tech of category.technologies; track tech) {
+                    <li>{{ tech }}</li>
+                  }
+                </ul>
+              </div>
+            </header>
+
+            <ul class="cards">
+              @for (service of category.services; track service.id) {
+                <li>
+                  <app-service-card [service]="service" [headingLevel]="4" />
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

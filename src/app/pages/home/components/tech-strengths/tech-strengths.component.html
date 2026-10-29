@@ -1,0 +1,35 @@
+<div class="grid">
+  @for (group of groups(); track group.title; let last = $last) {
+    <article
+      class="card"
+      [class.card--featured]="group.featured"
+      [class.card--fill]="last && fillLastRow()"
+    >
+      <div class="card__head">
+        <span class="card__icon"><app-icon [name]="group.icon" /></span>
+        <h3 class="card__title">{{ group.title }}</h3>
+        @if (group.featured) {
+          <span class="card__badge">Focus</span>
+        }
+      </div>
+      <p class="card__summary">{{ group.summary }}</p>
+      <ul class="card__items" [attr.aria-label]="group.title">
+        @for (item of group.items; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </article>
+  }
+</div>
+
+@if (languages().length) {
+  <div class="langs">
+    <app-icon class="langs__icon" name="globe" />
+    <span class="langs__label">Languages</span>
+    <ul class="langs__list">
+      @for (language of languages(); track language) {
+        <li>{{ language }}</li>
+      }
+    </ul>
+  </div>
+}

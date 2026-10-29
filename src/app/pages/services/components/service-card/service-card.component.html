@@ -1,0 +1,24 @@
+<article class="card">
+  <div class="card__icon">
+    <app-icon [name]="service().icon" />
+  </div>
+
+  <p class="card__title" role="heading" [attr.aria-level]="headingLevel()">{{ service().name }}</p>
+  <p class="card__desc">{{ service().description }}</p>
+
+  <ul class="card__tags" aria-label="Technologies">
+    @for (tech of service().technologies; track tech) {
+      <li>{{ tech }}</li>
+    }
+  </ul>
+
+  <a
+    class="card__link"
+    [routerLink]="[]"
+    [queryParams]="{ service: service().id }"
+    [fragment]="ctaFragment()"
+  >
+    {{ ctaLabel() }}<span class="visually-hidden">: {{ service().name }}</span>
+    <app-icon name="arrowRight" />
+  </a>
+</article>

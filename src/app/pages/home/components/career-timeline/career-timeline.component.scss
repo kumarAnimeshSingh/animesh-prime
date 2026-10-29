@@ -1,0 +1,357 @@
+@use '../../../../../styles/breakpoints' as bp;
+
+:host {
+  --gap: 1.25rem;
+  --dot-y: 2.2rem;
+  --dot-size: 1rem;
+
+  display: block;
+  margin-top: 2rem;
+
+  @include bp.down(bp.$md) {
+    --dot-y: 0.7rem;
+  }
+}
+
+// Summary strip
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 2.25rem;
+}
+
+.summary__item {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.2rem;
+  min-width: 9rem;
+  padding: 0.85rem 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.6);
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    background-color 0.25s var(--ease);
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-3px);
+      border-color: rgba(184, 146, 74, 0.6);
+      background-color: var(--surface);
+      box-shadow: var(--shadow-md);
+    }
+  }
+
+  dt {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+  }
+
+  dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--navy);
+  }
+
+  &--wide dd {
+    font-size: 1.35rem;
+    line-height: 1.15;
+  }
+}
+
+// Timeline
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.role {
+  display: grid;
+  grid-template-columns: 10.5rem 3rem minmax(0, 1fr);
+  grid-template-areas: 'when rail card';
+  padding-bottom: var(--gap);
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  @include bp.down(bp.$md) {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    grid-template-areas:
+      'rail when'
+      'rail card';
+    row-gap: 0.6rem;
+  }
+}
+
+.role__when {
+  grid-area: when;
+  padding-top: 1.55rem;
+  text-align: right;
+
+  @include bp.down(bp.$md) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+    padding-top: 0.25rem;
+    text-align: left;
+  }
+}
+
+.role__period {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--navy);
+  transition: color 0.25s var(--ease);
+}
+
+.role__duration {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color 0.25s var(--ease);
+
+  @include bp.down(bp.$md) {
+    margin: 0;
+  }
+}
+
+.role__rail {
+  position: relative;
+  grid-area: rail;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: calc(-1 * var(--gap));
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, var(--gold), rgba(184, 146, 74, 0.35));
+  }
+
+  .role:first-child &::before {
+    top: var(--dot-y);
+  }
+
+  .role:last-child &::before {
+    bottom: auto;
+    height: var(--dot-y);
+  }
+
+  .role:only-child &::before {
+    display: none;
+  }
+}
+
+.role__dot {
+  position: absolute;
+  top: calc(var(--dot-y) - var(--dot-size) / 2);
+  left: 50%;
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border: 3px solid var(--gold);
+  border-radius: 50%;
+  background: var(--cream-deep);
+  transform: translateX(-50%);
+  transition:
+    transform 0.25s var(--ease),
+    background-color 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
+
+  .is-current & {
+    background: var(--gold);
+    box-shadow: 0 0 0 6px rgba(184, 146, 74, 0.2);
+  }
+}
+
+.role__card {
+  position: relative;
+  isolation: isolate;
+  grid-area: card;
+  padding: 1.4rem 1.5rem;
+  border: 1px solid rgba(20, 35, 61, 0.08);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    opacity 0.25s var(--ease);
+
+  // Accent bar and warm tint; pseudo-elements so they can fade/grow in.
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    transition:
+      transform 0.3s var(--ease),
+      opacity 0.25s var(--ease);
+  }
+
+  &::before {
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  &::after {
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, #fffaf0, #fff);
+    opacity: 0;
+  }
+
+  .is-current & {
+    border-color: rgba(184, 146, 74, 0.45);
+
+    &::before {
+      transform: none;
+    }
+
+    &::after {
+      opacity: 0.6;
+    }
+  }
+}
+
+@mixin role-active {
+  .role__period {
+    color: var(--gold-deep);
+  }
+
+  .role__duration {
+    color: var(--gold-ink);
+  }
+
+  .role__dot {
+    background: var(--gold);
+    box-shadow: 0 0 0 6px rgba(184, 146, 74, 0.2);
+    transform: translateX(-50%) scale(1.25);
+  }
+
+  .role__card {
+    transform: translateY(-5px);
+    border-color: rgba(184, 146, 74, 0.6);
+    box-shadow: var(--shadow-lg);
+
+    &::before {
+      transform: none;
+    }
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  .role__title {
+    color: var(--gold-ink);
+  }
+
+  .role__focus li {
+    border-color: rgba(184, 146, 74, 0.35);
+    background-color: #fbf3e2;
+  }
+}
+
+@media (hover: hover) {
+  .role:hover {
+    @include role-active;
+  }
+
+  .timeline:hover .role:not(:hover) .role__card {
+    opacity: 0.8;
+  }
+}
+
+.role:focus-within {
+  @include role-active;
+}
+
+.role__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.role__title {
+  margin: 0;
+  color: var(--navy);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  transition: color 0.25s var(--ease);
+}
+
+.role__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  &::before {
+    content: '';
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: #4ade80;
+  }
+}
+
+.role__detail {
+  margin: 0.55rem 0 0;
+  max-width: 44rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.role__focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 0.28rem 0.65rem;
+    border: 1px solid rgba(20, 35, 61, 0.1);
+    border-radius: 999px;
+    background: #f8f6f1;
+    color: #3d475a;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition:
+      border-color 0.25s var(--ease),
+      background-color 0.25s var(--ease);
+  }
+}

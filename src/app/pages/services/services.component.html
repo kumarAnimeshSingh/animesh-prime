@@ -1,0 +1,21 @@
+<app-site-shell>
+  <app-services-hero
+    [categories]="categories"
+    [highlights]="highlights"
+    (categorySelect)="selectedCategory.set($event)"
+  />
+
+  <app-service-explorer [categories]="categories" [(selectedId)]="selectedCategory" />
+
+  <app-tech-stack [groups]="techStack" />
+
+  <app-business-solutions [solutions]="solutions" />
+
+  <app-industries [industries]="industries" />
+
+  <app-why-choose-us [items]="differentiators" />
+
+  <app-process-steps [steps]="processSteps" />
+
+  <app-inquiry-cta [contact]="contact" [topic]="enquiryTopic()" />
+</app-site-shell>

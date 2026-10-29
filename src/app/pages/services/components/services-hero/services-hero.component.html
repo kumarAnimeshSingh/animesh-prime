@@ -1,0 +1,124 @@
+<section class="hero" aria-labelledby="services-hero-title">
+  <div class="hero__bg" aria-hidden="true">
+    <span class="hero__grid"></span>
+    <span class="hero__glow hero__glow--gold"></span>
+    <span class="hero__glow hero__glow--sky"></span>
+    <span class="hero__shape hero__shape--a"></span>
+    <span class="hero__shape hero__shape--b"></span>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a routerLink="/">Home</a></li>
+          <li aria-current="page">Services</li>
+        </ol>
+      </nav>
+
+      <p class="hero__eyebrow">
+        <span class="hero__pulse" aria-hidden="true"></span>
+        Software &middot; AI &middot; Cloud &middot; Enterprise
+      </p>
+
+      <h1 id="services-hero-title" class="hero__title">
+        Technology Solutions
+        <span>Built Around Your Business</span>
+      </h1>
+
+      <p class="hero__lead">
+        From enterprise applications and cloud solutions to AI-powered systems, we design, develop, and
+        maintain secure, scalable technology solutions that help businesses operate smarter and grow faster.
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" [routerLink]="[]" fragment="inquiry">
+          Start a Project
+          <app-icon name="arrowRight" />
+        </a>
+        <a class="btn btn--outline-light" [routerLink]="[]" fragment="services">Explore Our Services</a>
+      </div>
+
+      <dl class="hero__stats">
+        @for (item of highlights(); track item.label) {
+          <div class="hero__stat">
+            <dt>{{ item.label }}</dt>
+            <dd>{{ item.value }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+
+    <div class="blueprint" aria-hidden="true">
+      <div class="blueprint__window">
+        <div class="blueprint__bar">
+          <span></span><span></span><span></span>
+          <p>solution-blueprint</p>
+          <em><i></i>Production</em>
+        </div>
+
+        <div class="blueprint__body">
+          <div class="tier">
+            <p class="tier__label">Experience</p>
+            <div class="tier__nodes">
+              <div class="node">
+                <app-icon name="browser" />
+                <div><strong>Web apps</strong><span>Angular · React</span></div>
+              </div>
+              <div class="node">
+                <app-icon name="chat" />
+                <div><strong>AI assistant</strong><span>Chat · Copilots</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tier">
+            <p class="tier__label">Services</p>
+            <div class="tier__nodes">
+              <div class="node node--accent">
+                <app-icon name="server" />
+                <div><strong>API layer</strong><span>ASP.NET Core</span></div>
+              </div>
+              <div class="node node--ai">
+                <app-icon name="sparkles" />
+                <div><strong>AI services</strong><span>LLMs · OpenAI</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tier">
+            <p class="tier__label">Platform</p>
+            <div class="tier__nodes tier__nodes--3">
+              <div class="node node--sm"><app-icon name="database" /><strong>SQL</strong></div>
+              <div class="node node--sm"><app-icon name="box" /><strong>Docker</strong></div>
+              <div class="node node--sm"><app-icon name="cloud" /><strong>Azure</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float float--a">
+        <app-icon name="check" />
+        <div><strong>Pipeline passed</strong><span>Build · Test · Deploy</span></div>
+      </div>
+      <div class="float float--b">
+        <app-icon name="shield" />
+        <div><strong>Secure by design</strong><span>Role-based access</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container practices">
+    <p class="practices__label" id="practice-jump-label">Jump to a practice</p>
+    <ul class="practices__list" aria-labelledby="practice-jump-label">
+      @for (category of categories(); track category.id) {
+        <li>
+          <a [routerLink]="[]" fragment="services" (click)="categorySelect.emit(category.id)">
+            <app-icon [name]="category.icon" />
+            {{ category.name }}
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
